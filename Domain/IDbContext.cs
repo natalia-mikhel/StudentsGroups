@@ -1,12 +1,14 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain
 {
     public interface IDbContext
     {
-        // DbSet<Enity> Entities { get; }
+        DbSet<Student> Students { get; set; }
+        DbSet<Group> Groups { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
