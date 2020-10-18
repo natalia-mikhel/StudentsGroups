@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Utils.Modules;
 using DAL;
 using Domain;
+using Domain.UseCases.Students.Mappings;
+using Presentation.Utils;
 
 namespace Presentation
 {
@@ -21,9 +24,11 @@ namespace Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(StudentAutoMapperProfile));
+            
             services.RegisterModule<DataAccessModule>(Configuration);
             services.RegisterModule<DomainModule>(Configuration);
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,13 +43,11 @@ namespace Presentation
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
-
+            
+            app.UseExceptionHandlerMiddleware();
+            
             app.UseRouting();
-
-            app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }

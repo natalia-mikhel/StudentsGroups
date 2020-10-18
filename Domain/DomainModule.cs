@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Domain.UseCases.Students.Commands;
+using Microsoft.Extensions.DependencyInjection;
 using Utils.Modules;
 
 namespace Domain
@@ -7,6 +9,7 @@ namespace Domain
     {
         public override void Load(IServiceCollection services)
         {
+            services.AddMediatR(typeof(CreateStudentCommandHandler));
         }
     }
 }

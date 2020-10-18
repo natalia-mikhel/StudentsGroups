@@ -1,8 +1,13 @@
-﻿namespace Domain.Enums
+﻿using System.ComponentModel;
+
+namespace Domain.Enums
 {
     public enum Gender
     {
-        Male,
-        Female
+        [Description("Male")]
+        Male = 1,
+
+        [Description("Female")]
+        Female = 2,
     }
 }
