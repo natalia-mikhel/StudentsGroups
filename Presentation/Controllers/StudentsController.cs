@@ -24,5 +24,19 @@ namespace Presentation.Controllers
         {
             return await _mediator.Send(new CreateStudentCommand() {CreateStudentDto = createStudentDto});
         }
+        
+        // PUT api/students
+        [HttpPut]
+        public async Task<ActionResult<Unit>> Put([FromBody] UpdateStudentDto updateStudentDto)
+        {
+            return await _mediator.Send(new UpdateStudentCommand() {UpdateStudentDto = updateStudentDto});
+        }
+        
+        // DELETE api/students/940D6255-ADB7-4834-736F-08D872C6D334
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> Delete(Guid id)
+        {
+            return await _mediator.Send(new DeleteStudentCommand() {Id = id});
+        }
     }
 }

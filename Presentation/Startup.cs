@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Utils.Modules;
 using DAL;
 using Domain;
+using Domain.UseCases.Groups.Mappings;
 using Domain.UseCases.Students.Mappings;
 using Presentation.Utils;
 
@@ -25,6 +26,7 @@ namespace Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(StudentAutoMapperProfile));
+            services.AddAutoMapper(typeof(GroupAutoMapperProfile));
             
             services.RegisterModule<DataAccessModule>(Configuration);
             services.RegisterModule<DomainModule>(Configuration);

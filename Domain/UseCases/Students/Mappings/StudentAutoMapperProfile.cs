@@ -9,6 +9,7 @@ namespace Domain.UseCases.Students.Mappings
         public StudentAutoMapperProfile()
         {
             CreateMap<CreateStudentDto, Student>();
+            CreateMap<UpdateStudentDto, Student>();
         }
     }
 }
