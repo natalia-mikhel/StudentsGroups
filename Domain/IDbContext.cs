@@ -9,6 +9,7 @@ namespace Domain
     {
         DbSet<Student> Students { get; set; }
         DbSet<Group> Groups { get; set; }
+        DbSet<StudentGroup> StudentGroups { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 

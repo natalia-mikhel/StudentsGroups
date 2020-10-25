@@ -9,6 +9,8 @@ namespace DAL
         public DbSet<Student> Students { get; set; }
         public DbSet<Group> Groups { get; set; }
         
+        public DbSet<StudentGroup> StudentGroups { get; set; }
+        
         public AppDbContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();

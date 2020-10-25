@@ -10,6 +10,7 @@ namespace Domain.UseCases.Groups.Mappings
         {
             CreateMap<CreateGroupDto, Group>();
             CreateMap<UpdateGroupDto, Group>();
+            CreateMap<AddStudentToGroupDto, StudentGroup>();
         }
     }
 }

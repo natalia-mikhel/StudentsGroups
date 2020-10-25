@@ -38,5 +38,19 @@ namespace Presentation.Controllers
         {
             return await _mediator.Send(new DeleteGroupCommand() {Id = id});
         }
+        
+        // POST api/groups/addStudent
+        [HttpPost("addStudent")]
+        public async Task<ActionResult<Unit>> AddStudent([FromBody] AddStudentToGroupDto addStudentToGroupDto)
+        {
+            return await _mediator.Send(new AddStudentToGroupCommand() {AddStudentToGroupDto = addStudentToGroupDto});
+        }
+        
+        // POST api/groups/removeStudent
+        [HttpPost("removeStudent")]
+        public async Task<ActionResult<Unit>> RemoveStudent([FromBody] RemoveStudentFromGroupDto removeStudentFromGroupDto)
+        {
+            return await _mediator.Send(new RemoveStudentFromGroupCommand() {RemoveStudentFromGroupDto = removeStudentFromGroupDto});
+        }
     }
 }
