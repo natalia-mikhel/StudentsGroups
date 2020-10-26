@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,8 +45,8 @@ namespace Domain.UseCases.Students.Queries
 
             if (!string.IsNullOrWhiteSpace(filter.Name))
             {
-                var nameFilter = filter.Name.Replace(" ", string.Empty);
-                students = students.Where(x => (x.Surname + x.Name + (string.IsNullOrEmpty(x.MiddleName) ? string.Empty : x.MiddleName)).Contains(nameFilter));
+                var nameFilter = filter.Name.Trim();
+                students = students.Where(x => (x.Surname + " " + x.Name + (string.IsNullOrEmpty(x.MiddleName) ? string.Empty : " " + x.MiddleName)).Contains(nameFilter));
             }
 
             if (!string.IsNullOrEmpty(filter.Identifier))
