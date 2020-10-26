@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.UseCases.Students.Commands;
 using Domain.UseCases.Students.Dto;
+using Domain.UseCases.Students.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +18,13 @@ namespace Presentation.Controllers
         public StudentsController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+        
+        // GET api/students
+        [HttpGet]
+        public async Task<ActionResult<List<StudentDto>>> Get([FromQuery] StudentFilterDto studentFilterDto)
+        {
+            return await _mediator.Send(new GetStudentsQuery() {StudentFilterDto = studentFilterDto});
         }
         
         // POST api/students

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.UseCases.Groups.Commands;
 using Domain.UseCases.Groups.Dto;
+using Domain.UseCases.Groups.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +19,14 @@ namespace Presentation.Controllers
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
-        
+
+        // GET api/groups
+        [HttpGet]
+        public async Task<ActionResult<List<GroupDto>>> Get([FromQuery] GroupFilterDto groupFilterDto)
+        {
+            return await _mediator.Send(new GetGroupsQuery() {GroupFilterDto = groupFilterDto});
+        }
+
         // POST api/groups
         [HttpPost]
         public async Task<ActionResult<Unit>> Post([FromBody] CreateGroupDto createGroupDto)

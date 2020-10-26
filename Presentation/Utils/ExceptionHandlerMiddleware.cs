@@ -34,6 +34,10 @@ namespace Presentation.Utils
             {
                 await HandleException(httpContext, HttpStatusCode.Conflict, e);
             }
+            catch (IncorrectPaginationValuesException e)
+            {
+                await HandleException(httpContext, HttpStatusCode.BadRequest, e);
+            }
         }
 
         private async Task HandleException(HttpContext httpContext, HttpStatusCode code, Exception exception)
